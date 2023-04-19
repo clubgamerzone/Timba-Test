@@ -16,14 +16,7 @@ namespace ClubGamerZone.Core
         [SerializeField] private TextMeshProUGUI _totalClick;
         public static Action OnGameFinished;
         private bool _isGameFinished;
-        private void OnEnable()
-        {
-            OnGameFinished += () => GameManager.Instance.PostScore(_clicks, OnPostScoreSuccess);
-        }
-        private void OnDisable()
-        {
-            OnGameFinished -= () => GameManager.Instance.PostScore(_clicks, OnPostScoreSuccess);
-        }
+
         private void Start()
         {
             _isGameFinished = false;
@@ -37,7 +30,6 @@ namespace ClubGamerZone.Core
             {
                 _isGameFinished = true;
                 _clickable.interactable = false;
-                //OnGameFinished?.Invoke();
                 GameManager.Instance.PostScore(_clicks, OnPostScoreSuccess);
             }
         }
